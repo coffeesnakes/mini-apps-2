@@ -1,0 +1,27 @@
+{
+  "name": "challenge_1",
+  "version": "1.0.0",
+  "description": "Mini App 2 - Challenge 1",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "json-server --watch data/db.json",
+    "watch": "webpack --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "json-server": "^0.16.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "webpack": "^4.44.0",
+    "webpack-cli": "^3.3.12"
+  }
+}
