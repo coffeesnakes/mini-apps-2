@@ -1,8 +1,7 @@
-import React from 'react';
-import axios from 'axios';
-
-import SearchBar from './SearchBar.jsx';
-import DisplayResult from './DisplayResult.jsx';
+import React from "react";
+import axios from "axios";
+import SearchBar from "./SearchBar.jsx";
+import DisplayResult from "./DisplayResult.jsx";
 
 class App extends React.Component {
   constructor(props) {
@@ -15,32 +14,34 @@ class App extends React.Component {
     this.submitSearch = this.submitSearch.bind(this);
     this.searchResultsRender = this.searchResultsRender.bind(this);
   }
-  updateSearch(e) {
+
+  updateSearch(event) {
     this.setState({
-      searchString: e.target.value,
+      searchString: event.target.value,
     });
   }
 
-  submitSearch(e) {
-    e.preventDefault();
+  submitSearch(event) {
+    event.preventDefault();
     axios
-      .get(`/events?q=${this.state.searchString}&_page&_limit=10`)
+      .get(`/events?q=${this.state.searchString}&_page=1&_limit=10`)
       .then((response) => {
         this.setState({
           searchResults: response.data,
           searchString: "",
         });
       })
-      .catch((err) => console.log("ERROR!  ", err));
+      .catch((error) => console.log("ERROR - ", error));
   }
+
   searchResultsRender() {
     if (this.state.searchResults.length === 0) {
-      return <p> Nothing found...</p>;
+      return <p>Time for a new search!</p>;
     } else {
       return (
         <div>
-          {this.state.searchResults.map((record, idx) => (
-            <DisplayResult record={record} key={idx} />
+          {this.state.searchResults.map((record, index) => (
+            <DisplayResult record={record} key={index} />
           ))}
         </div>
       );
@@ -56,7 +57,7 @@ class App extends React.Component {
             submitSearch={this.submitSearch}
           />
         </div>
-        <div>{this.searchResultsRender()}</div>
+        {this.searchResultsRender()}
       </div>
     );
   }
