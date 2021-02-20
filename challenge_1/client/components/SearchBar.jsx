@@ -1,14 +1,15 @@
 import React from "react";
 
-const SearchBar = ({ updateSearch, submitSearch }) => {
+const SearchBar = ({ updateSearch, fetchHistory }) => {
   return (
-    <form onSubmit={submitSearch}>
+    <div>
       <label>
         Search Historical Events:
+        <br />
         <input type="text" onChange={updateSearch} />
       </label>
-      <input type="submit" value="Search!" />
-    </form>
+      <input type="button" value="Search!" onClick={() => fetchHistory(1)} />
+    </div>
   );
 };
 
